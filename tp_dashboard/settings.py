@@ -14,8 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+APP_NAME = 'tp_dashboard'
+ETC_DIR = os.path.join(BASE_DIR, 'etc')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -24,6 +24,8 @@ SECRET_KEY = 'a@p4+x+-!^d#8*e75_d@dof8y+b_5ub52k+^6+koaix=-26p4c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SITE_ID = 10
+REVIEWER_SITE_ID = 0
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django_crypto_fields.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
+    'edc_protocol.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'tz_detect',
+    'edc_navbar.apps.AppConfig',
+    'edc_action_item.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
+    'edc_lab_dashboard.apps.AppConfig',
+    'edc_locator.apps.AppConfig',
+    'edc_identifier.apps.AppConfig',
+    'edc_model_wrapper.apps.AppConfig',
+    'tp_dashboard.apps.EdcAppointmentAppConfig',
+    'tp_dashboard.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'edc_subject_dashboard.middleware.DashboardMiddleware',
+    'edc_dashboard.middleware.DashboardMiddleware',
+    'edc_lab_dashboard.middleware.DashboardMiddleware',
 ]
 
 ROOT_URLCONF = 'tp_dashboard.urls'
@@ -118,3 +139,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GIT_DIR = BASE_DIR
+
+DASHBOARD_URL_NAMES = {
+    'subject_listboard_url': 'tp_dashboard:subject_listboard_url',
+    'screening_listboard_url': 'tp_dashboard:screening_listboard_url',
+    'subject_dashboard_url': 'tp_dashboard:subject_dashboard_url',
+}
+
+DASHBOARD_BASE_TEMPLATES = {
+    'listboard_base_template': 'tp/base.html',
+    'dashboard_base_template': 'tp/base.html',
+    'screening_listboard_template': 'tp_dashboard/screening/listboard.html',
+    'subject_listboard_template': 'tp_dashboard/subject/listboard.html',
+    'subject_dashboard_template': 'tp_dashboard/subject/dashboard.html',
+}
