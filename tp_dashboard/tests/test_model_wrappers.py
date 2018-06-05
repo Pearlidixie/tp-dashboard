@@ -27,7 +27,7 @@ class TestModelWrappers(TestCase):
     def test_subject_screening(self):
         helper = ScreeningModelWrapperTestHelper(
             model_wrapper=SubjectScreeningModelWrapper,
-            app_label='ambition_dashboard',
+            app_label='tp_dashboard',
             screening_identifier='ABCDEFGH')
         helper.test(self)
 
@@ -37,7 +37,7 @@ class TestModelWrappers(TestCase):
             screening_identifier='1234')
         helper = self.model_wrapper_helper_cls(
             model_wrapper=SubjectConsentModelWrapper,
-            app_label='ambition_dashboard',
+            app_label='tp_dashboard',
             subject_identifier='092-12345')
         helper.test(self)
 
@@ -45,14 +45,14 @@ class TestModelWrappers(TestCase):
     def test_subject_locator(self):
         helper = self.model_wrapper_helper_cls(
             model_wrapper=SubjectLocatorModelWrapper,
-            app_label='ambition_dashboard',
+            app_label='tp_dashboard',
             subject_identifier='092-12345')
         helper.test(self)
 
     def test_appointment(self):
 
         class MySubjectVisitModelWrapper(SubjectVisitModelWrapper):
-            model = 'ambition_dashboard.subjectvisit'
+            model = 'tp_dashboard.subjectvisit'
 
         class MyAppointmentModelWrapper(AppointmentModelWrapper):
             visit_model_wrapper_cls = MySubjectVisitModelWrapper
@@ -72,7 +72,7 @@ class TestModelWrappers(TestCase):
             subject_identifier='092-12345',)
         helper = self.model_wrapper_helper_cls(
             model_wrapper=SubjectVisitModelWrapper,
-            app_label='ambition_dashboard',
+            app_label='tp_dashboard',
             subject_identifier='092-12345',
             appointment=appointment)
         helper.test(self)
@@ -88,6 +88,6 @@ class TestModelWrappers(TestCase):
             appointment=appointment)
         helper = self.model_wrapper_helper_cls(
             model_wrapper=MyRequisitionModelWrapper,
-            app_label='ambition_dashboard',
+            app_label='tp_dashboard',
             subject_visit=subject_visit)
         helper.test(self)

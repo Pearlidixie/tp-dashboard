@@ -4,9 +4,9 @@ from edc_navbar import NavbarItem, site_navbars, Navbar
 
 no_url_namespace = True if settings.APP_NAME == 'tp_dashboard' else False
 
-ambition_dashboard = Navbar(name='tp_dashboard')
+tp_dashboard = Navbar(name='tp_dashboard')
 
-ambition_dashboard.append_item(
+tp_dashboard.append_item(
     NavbarItem(
         name='screened_subject',
         title='Screening',
@@ -15,7 +15,7 @@ ambition_dashboard.append_item(
         url_name=settings.DASHBOARD_URL_NAMES['screening_listboard_url'],
         no_url_namespace=no_url_namespace))
 
-ambition_dashboard.append_item(
+tp_dashboard.append_item(
     NavbarItem(
         name='consented_subject',
         title='Subjects',
@@ -24,4 +24,4 @@ ambition_dashboard.append_item(
         url_name=settings.DASHBOARD_URL_NAMES['subject_listboard_url'],
         no_url_namespace=no_url_namespace))
 
-site_navbars.register(ambition_dashboard)
+site_navbars.register(tp_dashboard)
