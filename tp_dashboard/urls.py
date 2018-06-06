@@ -28,7 +28,6 @@ subject_dashboard_url_config = UrlConfig(
     identifier_pattern=subject_identifier)
 
 
-
 urlpatterns = []
 urlpatterns += subject_listboard_url_config.listboard_urls
 urlpatterns += screening_listboard_url_config.listboard_urls
